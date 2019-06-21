@@ -1,21 +1,20 @@
 <html>
-	<head>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<title>Movie Search Engine</title>
-	</head>
-
-	<body>
-        <form id="search_form" accept-charset="utfi-8">
-		  <input dir="auto" id="search" type="text" tabindex="0" placeholder="Search for a movie, tv show, person..." role="textbox">
-          <input type="submit">
-        </form>
-	<div class="bg-secondary" id="results"></div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-	$("#search_form").submit(function(e){
-		$("#results").load("https://themoviedb.org/search?query=" + $('#search').val() + "&language=en-US .search_results");
-		e.preventDefault();
-	});
-	</script>
-	</body>
+<head>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$.getJSON("patient_changes.json", function(info) {
+        document.write("Name of patient: " + info.name.given[0] + " " + info.name.family[0] + "<br>");
+        document.write("Organization Name: " + info.managingOrganization.display + "<br>");
+        document.write("Gender: " + info.gender + "<br>");
+        document.write("Number of conditions they have: " + info.conditions.length + "<br>");
+        document.write("List of all conditions:" + "<br>")
+        var condition;
+        for (condition in info.conditions) {
+          document.write("- " + condition + "<br>");
+        }
+})
+</script>
+</body>
 </html>
